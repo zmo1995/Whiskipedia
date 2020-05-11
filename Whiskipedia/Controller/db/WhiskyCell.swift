@@ -10,11 +10,10 @@ import UIKit
 
 class WhiskyCell: UITableViewCell {
 
+    //MARK: - Property Setup
     @IBOutlet weak var Name: UILabel!
     
-    
     @IBOutlet weak var Cost: UILabel!
-    
     
     @IBOutlet weak var Country: UILabel!
     
@@ -25,17 +24,13 @@ class WhiskyCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-    //MARK: - Init with a loaded Whisky 
-    
+    //MARK: - Init with a Whisky Object
     func setup(with Whisky: Whisky) {
         Name.text = Whisky.Whiskyname
         Cost.text = Whisky.Cost

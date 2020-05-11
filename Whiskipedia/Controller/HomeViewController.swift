@@ -7,84 +7,284 @@
 //
 
 import UIKit
+import Firebase
 
-class HomeViewController: UITableViewController {
+internal let RefreshControl = UIRefreshControl()
 
+class HomeViewController: UITableViewController,reviewCellDelegate{
+
+    //MARK: - Property setup
+    private let cellID = "ReviewCell"
+    var followingUsers : Dictionary<String,String> = Dictionary<String,String>()
+    var followingList = [String]()
+    var postsToShow : [Post] = [Post]()
+    let db = Firestore.firestore()
+    var index : DocumentSnapshot?
+    var postsNum = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.tableView.refreshControl = RefreshControl
+        btnsetup()
+        RefreshControl.tintColor = .brown
+        RefreshControl.attributedTitle = NSAttributedString(string: "Loading Posts")
+        RefreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.register(UINib(nibName: cellID, bundle: nil), forCellReuseIdentifier: cellID)
+        loadFollowingList()
+        navigationItem.title = "Whiskipedia"
     }
 
-    // MARK: - Table view data source
+    func btnsetup()
+    {
+        let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout))
+        self.navigationItem.leftBarButtonItem = logoutBtn
+    }
+    
+    @objc func refresh()
+    {
+        loadFollowingList()
+    }
+    
+    
+    //MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return postsToShow.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier:cellID) as! ReviewCell
+        let url = followingUsers[postsToShow[indexPath.row].authorID]
+        cell.setup(with: postsToShow[indexPath.row], url: url!)
+        cell.LikeBtn.tag = indexPath.row
+        cell.delegate = self
+        cell.selectionStyle = .none
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == postsToShow.count - 1 && postsToShow.count < postsNum
+        {
+            print("Triggered")
+            print("INdex path is \(indexPath.row)")
+            print("posttoshow has \(postsToShow.count) elements ")
+            loadPost()
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    //MARK: - Table view layout
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 680
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    //MARK: - API methods
+    
+    func loadFollowingList()
+    {
+        print("inside loading ")
+        let myref = db.collection("user").document(Auth.auth().currentUser!.uid)
+        let usersRef = db.collection("user")
+        myref.getDocument { (snapshot, error) in
+            if let e = error
+            {
+                print(e.localizedDescription)
+            }
+            else
+            {
+                let doc = snapshot?.data()
+                let myurl = doc!["profileImageURL"] as! String
+                self.followingUsers[Auth.auth().currentUser!.uid] = myurl
+                let followingList = doc!["Following"] as! [String]
+                self.followingList = followingList
+                var posts = [String]()
+                print("Start Loading Posts")
+                for ids in followingList
+                {
+                    usersRef.document(ids).getDocument { (Usersnapshot, error) in
+                        if let e = error
+                        { print(e.localizedDescription) }
+                        else
+                        {
+                            print("User : \(Usersnapshot!.documentID)")
+                            let dic = Usersnapshot!.data()! as Dictionary<String,AnyObject>
+                            let postIDs = dic["posts"] as! [String]
+                            posts.append(contentsOf: postIDs)
+                            self.postsNum = posts.count
+                            print("Need to Load \(self.postsNum) Posts in Total")
+                            self.followingUsers[Usersnapshot!.documentID] = (dic["profileImageURL"] as! String)
+                            print(followingList.count)
+                            if ids == followingList[0]
+                            {
+                                print("PostIDs Loading Finish")
+                                self.loadPost()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    func loadPost()
+    {
+        var reviewRef = db.collection("reviews").whereField("authorID", in: self.followingList).order(by: "time", descending: true).limit(to: 2)
+        if let snapshot = self.index
+        {
+            reviewRef = reviewRef.start(afterDocument: snapshot)
+        }
+        
+        reviewRef.getDocuments { (reviewSnapshot, error) in
+            if let e = error
+            {
+                print(e.localizedDescription)
+            }
+            else
+            {
+                for doc in reviewSnapshot!.documents
+                {
+                    let reviewData = doc.data() as Dictionary<String,AnyObject>
+                    let postToAdd = Post(dic: reviewData)
+                    postToAdd.postID = doc.documentID
+                    if let likeList = reviewData["likeList"] as? [String]
+                    {
+                        print("Likelist has \(likeList.count) users")
+                        for user in likeList
+                        {
+                            print("Like User is : " + user)
+                        }
+                    }
+                    self.postsToShow.append(postToAdd)
+                    self.index = doc
+                }
+                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+                
+                
+                
+            }
+        }
+        
+        
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+//    func loadPost(postlist : [String])
+//    {
+//        for everypost in postlist
+//        {
+//            print(everypost)
+//            self.db.collection("reviews").document(everypost).getDocument { (snapshot, error) in
+//                if let e =  error
+//                {
+//                    print(e.localizedDescription)
+//                }
+//                else
+//                {
+//                    let dic = snapshot!.data()! as Dictionary<String,AnyObject>
+//                    let postToAdd = Post(dic: dic)
+//                    postToAdd.postID = snapshot?.documentID
+//                    if let likeList = dic["likeList"] as? [String]
+//                    {
+//                        print("Likelist has \(likeList.count) users")
+//                        for user in likeList
+//                        {
+//                            print("Like User is : " + user)
+//                        }
+//                    }
+//                    self.postsToShow.append(postToAdd)
+//                    self.tableView.reloadData()
+//                    self.tableView.refreshControl?.endRefreshing()
+//                }
+//            }
+//        }
+//    }
+    
+    @objc func like_unlike(like: Bool, index: Int) {
+        print("Like/Unlike index is \(index)")
+        print("action is \(like ? "Like":"Unlike")")
+        let myuid = Auth.auth().currentUser!.uid;
+        if like{ postsToShow[index].likeList?.append(myuid)}
+        else
+        {
+            postsToShow[index].likeList?.remove(object: myuid)
+        }
+        let postRef = db.collection("reviews").document(postsToShow[index].postID!)
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let postDoc : DocumentSnapshot
+            do {
+                try postDoc = transaction.getDocument(postRef)
+            }
+            catch let fetchError as NSError
+            {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+            guard var LikeList = postDoc.data()?["likeList"] as? [String]
+            else
+            {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve population from likelist snapshot \(postDoc)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+            
+            if like && !LikeList.contains(myuid)
+            {
+                LikeList.append(myuid)
+                print("Liked  \(postRef.documentID)")
+            }
+            else if !like && LikeList.contains(myuid)
+            {
+                LikeList.remove(object: myuid)
+                print("Unliked  \(postRef.documentID)")
+            }
+            
+            postRef.updateData(["likeList":LikeList])
+            return nil
+            
+        }) { (object, error) in
+            if let e = error
+            {
+                print(e.localizedDescription)
+            }
+            else
+            {
+                print("Transaction Successful")
+                self.tableView.reloadData()
+            }
+        }
+        
     }
-    */
-
+    
+    
+    @objc func logout()
+       {
+           do {
+           try Auth.auth().signOut()
+               //self.navigationController?.popToRootViewController(animated: true)
+               self.tabBarController?.navigationController?.popToRootViewController(animated: true)
+           }
+           catch
+           {
+               print(error.localizedDescription)
+           }
+       }
+    
+    
+    
+    
+    
 }
+  

@@ -3,27 +3,91 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E1AF17524580443003B6E74 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AF17324580443003B6E74 /* ReviewCell.swift */; };
+		3E1AF17624580443003B6E74 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E1AF17424580443003B6E74 /* ReviewCell.xib */; };
+		3E43D90D244FBB2E0087B3FC /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43D90C244FBB2E0087B3FC /* ArrayExtension.swift */; };
+		3E43D91024523F6D0087B3FC /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43D90E24523F6D0087B3FC /* EditProfileVC.swift */; };
+		3E43D91124523F6D0087B3FC /* EditProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43D90F24523F6D0087B3FC /* EditProfileVC.xib */; };
+		3E43D9162453614C0087B3FC /* SelectImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43D9152453614C0087B3FC /* SelectImageVC.swift */; };
+		3E43D918245361CA0087B3FC /* SelectPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43D917245361CA0087B3FC /* SelectPhotoCell.swift */; };
+		3E43D91A245362280087B3FC /* SelectPhotoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43D919245362280087B3FC /* SelectPhotoHeader.swift */; };
+		3E43D91C2454AA540087B3FC /* PostClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43D91B2454AA540087B3FC /* PostClass.swift */; };
+		3E43D91E2454D3740087B3FC /* TextVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43D91D2454D3740087B3FC /* TextVC.swift */; };
 		3E4E09C4242FDE9C002E3E16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E09C3242FDE9C002E3E16 /* AppDelegate.swift */; };
 		3E4E09C6242FDE9C002E3E16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E09C5242FDE9C002E3E16 /* SceneDelegate.swift */; };
-		3E4E09C8242FDE9C002E3E16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E09C7242FDE9C002E3E16 /* ViewController.swift */; };
+		3E4E09C8242FDE9C002E3E16 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E09C7242FDE9C002E3E16 /* WelcomeVC.swift */; };
 		3E4E09CB242FDE9C002E3E16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4E09C9242FDE9C002E3E16 /* Main.storyboard */; };
 		3E4E09CD242FDE9D002E3E16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4E09CC242FDE9D002E3E16 /* Assets.xcassets */; };
 		3E4E09D0242FDE9D002E3E16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4E09CE242FDE9D002E3E16 /* LaunchScreen.storyboard */; };
+		3E4E09DE242FE381002E3E16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4E09DD242FE381002E3E16 /* GoogleService-Info.plist */; };
+		3E4E09E0242FEC00002E3E16 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E09DF242FEC00002E3E16 /* RegViewController.swift */; };
+		3E4E09E22433E431002E3E16 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4E09E12433E431002E3E16 /* LoginViewController.swift */; };
+		3E65D0CB243D05140018DB1C /* UserStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0CA243D05140018DB1C /* UserStruct.swift */; };
+		3E65D0D2243D18000018DB1C /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0D1243D18000018DB1C /* UserInfoViewController.swift */; };
+		3E65D0D7243D30DA0018DB1C /* UserInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0D5243D30DA0018DB1C /* UserInfoHeader.swift */; };
+		3E65D0D8243D30DA0018DB1C /* UserInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E65D0D6243D30DA0018DB1C /* UserInfoHeader.xib */; };
+		3E65D0DA243D492F0018DB1C /* ImageViewDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0D9243D492F0018DB1C /* ImageViewDownload.swift */; };
+		3E65D0DC243E6C8B0018DB1C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0DB243E6C8B0018DB1C /* HomeViewController.swift */; };
+		3E65D0DE243E6F420018DB1C /* dbViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0DD243E6F420018DB1C /* dbViewController.swift */; };
+		3E65D0E2243E73F20018DB1C /* WhiskeyClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0E1243E73F20018DB1C /* WhiskeyClass.swift */; };
+		3E65D0E5243E78B50018DB1C /* WhiskyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0E3243E78B50018DB1C /* WhiskyCell.swift */; };
+		3E65D0E6243E78B50018DB1C /* WhiskyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E65D0E4243E78B50018DB1C /* WhiskyCell.xib */; };
+		3E65D0E92441495E0018DB1C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0E72441495E0018DB1C /* UserCell.swift */; };
+		3E65D0EA2441495E0018DB1C /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E65D0E82441495E0018DB1C /* UserCell.xib */; };
+		3E65D0EC24414D5E0018DB1C /* UserSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0EB24414D5E0018DB1C /* UserSearchViewController.swift */; };
+		3EEB88CC245677D4003BAAAD /* dbForPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEB88CB245677D4003BAAAD /* dbForPostVC.swift */; };
+		3EEB88CE24576888003BAAAD /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEB88CD24576888003BAAAD /* PostCell.swift */; };
+		3EEB88D024579D01003BAAAD /* PostDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEB88CF24579D01003BAAAD /* PostDetailVC.swift */; };
+		3EFEC07324561EC100FA074A /* addWhiskyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC07224561EC100FA074A /* addWhiskyVC.swift */; };
+		806C854980743DE3AA1064AE /* Pods_Whiskipedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A45777888C05C84BBB4AF12 /* Pods_Whiskipedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E1AF17324580443003B6E74 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
+		3E1AF17424580443003B6E74 /* ReviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
+		3E43D90C244FBB2E0087B3FC /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		3E43D90E24523F6D0087B3FC /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		3E43D90F24523F6D0087B3FC /* EditProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileVC.xib; sourceTree = "<group>"; };
+		3E43D9152453614C0087B3FC /* SelectImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageVC.swift; sourceTree = "<group>"; };
+		3E43D917245361CA0087B3FC /* SelectPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoCell.swift; sourceTree = "<group>"; };
+		3E43D919245362280087B3FC /* SelectPhotoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoHeader.swift; sourceTree = "<group>"; };
+		3E43D91B2454AA540087B3FC /* PostClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostClass.swift; sourceTree = "<group>"; };
+		3E43D91D2454D3740087B3FC /* TextVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextVC.swift; sourceTree = "<group>"; };
 		3E4E09C0242FDE9C002E3E16 /* Whiskipedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whiskipedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4E09C3242FDE9C002E3E16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E4E09C5242FDE9C002E3E16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3E4E09C7242FDE9C002E3E16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3E4E09C7242FDE9C002E3E16 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		3E4E09CA242FDE9C002E3E16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E4E09CC242FDE9D002E3E16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E4E09CF242FDE9D002E3E16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E4E09D1242FDE9D002E3E16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E4E09DD242FE381002E3E16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3E4E09DF242FEC00002E3E16 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
+		3E4E09E12433E431002E3E16 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3E65D0CA243D05140018DB1C /* UserStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStruct.swift; sourceTree = "<group>"; };
+		3E65D0D1243D18000018DB1C /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		3E65D0D5243D30DA0018DB1C /* UserInfoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoHeader.swift; sourceTree = "<group>"; };
+		3E65D0D6243D30DA0018DB1C /* UserInfoHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoHeader.xib; sourceTree = "<group>"; };
+		3E65D0D9243D492F0018DB1C /* ImageViewDownload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewDownload.swift; sourceTree = "<group>"; };
+		3E65D0DB243E6C8B0018DB1C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3E65D0DD243E6F420018DB1C /* dbViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbViewController.swift; sourceTree = "<group>"; };
+		3E65D0E1243E73F20018DB1C /* WhiskeyClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhiskeyClass.swift; sourceTree = "<group>"; };
+		3E65D0E3243E78B50018DB1C /* WhiskyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiskyCell.swift; sourceTree = "<group>"; };
+		3E65D0E4243E78B50018DB1C /* WhiskyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhiskyCell.xib; sourceTree = "<group>"; };
+		3E65D0E72441495E0018DB1C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		3E65D0E82441495E0018DB1C /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		3E65D0EB24414D5E0018DB1C /* UserSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewController.swift; sourceTree = "<group>"; };
+		3EEB88CB245677D4003BAAAD /* dbForPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbForPostVC.swift; sourceTree = "<group>"; };
+		3EEB88CD24576888003BAAAD /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		3EEB88CF24579D01003BAAAD /* PostDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailVC.swift; sourceTree = "<group>"; };
+		3EFEC07224561EC100FA074A /* addWhiskyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addWhiskyVC.swift; sourceTree = "<group>"; };
+		9033CCF00FAD266ABBE6F3EE /* Pods-Whiskipedia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whiskipedia.release.xcconfig"; path = "Target Support Files/Pods-Whiskipedia/Pods-Whiskipedia.release.xcconfig"; sourceTree = "<group>"; };
+		9A45777888C05C84BBB4AF12 /* Pods_Whiskipedia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Whiskipedia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2AD61AAE4FD4712761C9544 /* Pods-Whiskipedia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Whiskipedia.debug.xcconfig"; path = "Target Support Files/Pods-Whiskipedia/Pods-Whiskipedia.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +95,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806C854980743DE3AA1064AE /* Pods_Whiskipedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E43D912245360F20087B3FC /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				3E43D9152453614C0087B3FC /* SelectImageVC.swift */,
+				3E43D917245361CA0087B3FC /* SelectPhotoCell.swift */,
+				3E43D919245362280087B3FC /* SelectPhotoHeader.swift */,
+				3E43D91D2454D3740087B3FC /* TextVC.swift */,
+				3EEB88CB245677D4003BAAAD /* dbForPostVC.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		3E43D91F245604C00087B3FC /* db */ = {
+			isa = PBXGroup;
+			children = (
+				3E65D0DD243E6F420018DB1C /* dbViewController.swift */,
+				3E65D0E3243E78B50018DB1C /* WhiskyCell.swift */,
+				3EFEC07224561EC100FA074A /* addWhiskyVC.swift */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
 		3E4E09B7242FDE9C002E3E16 = {
 			isa = PBXGroup;
 			children = (
 				3E4E09C2242FDE9C002E3E16 /* Whiskipedia */,
 				3E4E09C1242FDE9C002E3E16 /* Products */,
+				5F3E1011353CD2B0FC746F87 /* Pods */,
+				C200854FF6344E0220D86591 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +145,80 @@
 		3E4E09C2242FDE9C002E3E16 /* Whiskipedia */ = {
 			isa = PBXGroup;
 			children = (
+				3E65D0CE243D0F680018DB1C /* Controller */,
+				3E65D0CD243D0F5E0018DB1C /* View */,
+				3E65D0CC243D0F480018DB1C /* Model */,
 				3E4E09C3242FDE9C002E3E16 /* AppDelegate.swift */,
+				3E4E09DD242FE381002E3E16 /* GoogleService-Info.plist */,
 				3E4E09C5242FDE9C002E3E16 /* SceneDelegate.swift */,
-				3E4E09C7242FDE9C002E3E16 /* ViewController.swift */,
-				3E4E09C9242FDE9C002E3E16 /* Main.storyboard */,
 				3E4E09CC242FDE9D002E3E16 /* Assets.xcassets */,
 				3E4E09CE242FDE9D002E3E16 /* LaunchScreen.storyboard */,
 				3E4E09D1242FDE9D002E3E16 /* Info.plist */,
 			);
 			path = Whiskipedia;
+			sourceTree = "<group>";
+		};
+		3E65D0CC243D0F480018DB1C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E65D0D9243D492F0018DB1C /* ImageViewDownload.swift */,
+				3E65D0E1243E73F20018DB1C /* WhiskeyClass.swift */,
+				3E65D0CA243D05140018DB1C /* UserStruct.swift */,
+				3E43D90C244FBB2E0087B3FC /* ArrayExtension.swift */,
+				3E43D91B2454AA540087B3FC /* PostClass.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3E65D0CD243D0F5E0018DB1C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E43D90F24523F6D0087B3FC /* EditProfileVC.xib */,
+				3E1AF17424580443003B6E74 /* ReviewCell.xib */,
+				3E65D0E82441495E0018DB1C /* UserCell.xib */,
+				3E65D0E4243E78B50018DB1C /* WhiskyCell.xib */,
+				3E65D0D6243D30DA0018DB1C /* UserInfoHeader.xib */,
+				3E4E09C9242FDE9C002E3E16 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3E65D0CE243D0F680018DB1C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3E43D91F245604C00087B3FC /* db */,
+				3E43D912245360F20087B3FC /* Post */,
+				3E4E09C7242FDE9C002E3E16 /* WelcomeVC.swift */,
+				3EEB88CF24579D01003BAAAD /* PostDetailVC.swift */,
+				3E4E09E12433E431002E3E16 /* LoginViewController.swift */,
+				3E4E09DF242FEC00002E3E16 /* RegViewController.swift */,
+				3E65D0D1243D18000018DB1C /* UserInfoViewController.swift */,
+				3E65D0D5243D30DA0018DB1C /* UserInfoHeader.swift */,
+				3E1AF17324580443003B6E74 /* ReviewCell.swift */,
+				3E65D0DB243E6C8B0018DB1C /* HomeViewController.swift */,
+				3E65D0E72441495E0018DB1C /* UserCell.swift */,
+				3E65D0EB24414D5E0018DB1C /* UserSearchViewController.swift */,
+				3E43D90E24523F6D0087B3FC /* EditProfileVC.swift */,
+				3EEB88CD24576888003BAAAD /* PostCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5F3E1011353CD2B0FC746F87 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2AD61AAE4FD4712761C9544 /* Pods-Whiskipedia.debug.xcconfig */,
+				9033CCF00FAD266ABBE6F3EE /* Pods-Whiskipedia.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C200854FF6344E0220D86591 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A45777888C05C84BBB4AF12 /* Pods_Whiskipedia.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E4E09D4242FDE9D002E3E16 /* Build configuration list for PBXNativeTarget "Whiskipedia" */;
 			buildPhases = (
+				0FFEF4C52BA0851DECFD62CE /* [CP] Check Pods Manifest.lock */,
 				3E4E09BC242FDE9C002E3E16 /* Sources */,
 				3E4E09BD242FDE9C002E3E16 /* Frameworks */,
 				3E4E09BE242FDE9C002E3E16 /* Resources */,
+				D89BA21AC6359F79AAA644A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -126,21 +282,93 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E4E09D0242FDE9D002E3E16 /* LaunchScreen.storyboard in Resources */,
+				3E65D0D8243D30DA0018DB1C /* UserInfoHeader.xib in Resources */,
+				3E1AF17624580443003B6E74 /* ReviewCell.xib in Resources */,
+				3E43D91124523F6D0087B3FC /* EditProfileVC.xib in Resources */,
+				3E4E09DE242FE381002E3E16 /* GoogleService-Info.plist in Resources */,
 				3E4E09CD242FDE9D002E3E16 /* Assets.xcassets in Resources */,
+				3E65D0E6243E78B50018DB1C /* WhiskyCell.xib in Resources */,
 				3E4E09CB242FDE9C002E3E16 /* Main.storyboard in Resources */,
+				3E65D0EA2441495E0018DB1C /* UserCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0FFEF4C52BA0851DECFD62CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Whiskipedia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D89BA21AC6359F79AAA644A0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Whiskipedia/Pods-Whiskipedia-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Whiskipedia/Pods-Whiskipedia-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Whiskipedia/Pods-Whiskipedia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3E4E09BC242FDE9C002E3E16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E4E09C8242FDE9C002E3E16 /* ViewController.swift in Sources */,
+				3E43D9162453614C0087B3FC /* SelectImageVC.swift in Sources */,
+				3E43D91A245362280087B3FC /* SelectPhotoHeader.swift in Sources */,
+				3EFEC07324561EC100FA074A /* addWhiskyVC.swift in Sources */,
+				3E65D0DA243D492F0018DB1C /* ImageViewDownload.swift in Sources */,
+				3E1AF17524580443003B6E74 /* ReviewCell.swift in Sources */,
+				3E4E09C8242FDE9C002E3E16 /* WelcomeVC.swift in Sources */,
+				3E65D0D2243D18000018DB1C /* UserInfoViewController.swift in Sources */,
+				3E43D91C2454AA540087B3FC /* PostClass.swift in Sources */,
+				3E65D0E5243E78B50018DB1C /* WhiskyCell.swift in Sources */,
+				3E65D0EC24414D5E0018DB1C /* UserSearchViewController.swift in Sources */,
+				3E43D91024523F6D0087B3FC /* EditProfileVC.swift in Sources */,
+				3E43D918245361CA0087B3FC /* SelectPhotoCell.swift in Sources */,
 				3E4E09C4242FDE9C002E3E16 /* AppDelegate.swift in Sources */,
+				3E65D0D7243D30DA0018DB1C /* UserInfoHeader.swift in Sources */,
+				3E65D0E92441495E0018DB1C /* UserCell.swift in Sources */,
+				3E65D0DC243E6C8B0018DB1C /* HomeViewController.swift in Sources */,
 				3E4E09C6242FDE9C002E3E16 /* SceneDelegate.swift in Sources */,
+				3EEB88CC245677D4003BAAAD /* dbForPostVC.swift in Sources */,
+				3E65D0DE243E6F420018DB1C /* dbViewController.swift in Sources */,
+				3E43D90D244FBB2E0087B3FC /* ArrayExtension.swift in Sources */,
+				3EEB88CE24576888003BAAAD /* PostCell.swift in Sources */,
+				3E43D91E2454D3740087B3FC /* TextVC.swift in Sources */,
+				3E4E09E22433E431002E3E16 /* LoginViewController.swift in Sources */,
+				3E4E09E0242FEC00002E3E16 /* RegViewController.swift in Sources */,
+				3EEB88D024579D01003BAAAD /* PostDetailVC.swift in Sources */,
+				3E65D0CB243D05140018DB1C /* UserStruct.swift in Sources */,
+				3E65D0E2243E73F20018DB1C /* WhiskeyClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +510,7 @@
 		};
 		3E4E09D5242FDE9D002E3E16 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2AD61AAE4FD4712761C9544 /* Pods-Whiskipedia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -291,7 +520,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-assign.Whiskipedia";
+				PRODUCT_BUNDLE_IDENTIFIER = zhixuanMo.Whiskipedia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -300,6 +529,7 @@
 		};
 		3E4E09D6242FDE9D002E3E16 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9033CCF00FAD266ABBE6F3EE /* Pods-Whiskipedia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -309,7 +539,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-assign.Whiskipedia";
+				PRODUCT_BUNDLE_IDENTIFIER = zhixuanMo.Whiskipedia;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

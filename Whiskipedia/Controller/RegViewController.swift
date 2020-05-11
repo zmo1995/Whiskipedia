@@ -10,9 +10,9 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class RegViewController: ViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate , UITextFieldDelegate  {
+class RegViewController: UIViewController , UIImagePickerControllerDelegate , UINavigationControllerDelegate , UITextFieldDelegate  {
     
-    
+    //MARK: -  Property setup
     @IBOutlet weak var emailTextField: UITextField!
     
     @IBOutlet weak var UsernameTextField: UITextField!
@@ -37,11 +37,9 @@ class RegViewController: ViewController , UIImagePickerControllerDelegate , UINa
         emailTextField.addTarget(self, action: #selector(infoValidation), for: .editingChanged)
         UsernameTextField.addTarget(self, action: #selector(infoValidation), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(infoValidation), for: .editingChanged)
-        
-        
-        
-        // Do any additional setup after loading the view.
     }
+    
+    //MARK: - Retrive Keyboard when Touch begin
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -52,8 +50,7 @@ class RegViewController: ViewController , UIImagePickerControllerDelegate , UINa
     }
     
     
-    
-    
+    //MARK: - API functions
     @IBAction func signUpBtnPressed(_ sender: UIButton)
     {
         print("sign up pressed")
@@ -72,11 +69,12 @@ class RegViewController: ViewController , UIImagePickerControllerDelegate , UINa
                         }
                 else
                 {
-                    // Create user file and upload to database
+                    // Create user file
                     var newUser =  User()
                     newUser.email = email
                     newUser.username = username
                     newUser.UID = authResult?.user.uid
+                    //Upload Image to firebase Storage
                     let userImage = self.IconSelectBtn.imageView?.image
                     guard let profileImage = userImage?.jpegData(compressionQuality: 0.1)   else { print(error!.localizedDescription); return}
                     let filename = NSUUID().uuidString
@@ -105,7 +103,6 @@ class RegViewController: ViewController , UIImagePickerControllerDelegate , UINa
                            else
                             {
                                 newUser.profileImageURL = url?.absoluteString
-                                print(url?.absoluteString)
                                  self.uploadUser(with: newUser)
                             }
                         })
@@ -114,33 +111,31 @@ class RegViewController: ViewController , UIImagePickerControllerDelegate , UINa
                     uploadTask.observe(.success) { snapshot in
                       // Upload completed successfully
                         print("upload success ")
-                       
                         self.performSegue(withIdentifier: "RegToMain", sender: self)
                     }
-
-                    
-                    
-                    
-                    
-                    
-                    
                 }
             }
         }
         else {return}
     }
     
+    func uploadUser(with user: User)
+    {
+        let follower = [String]()
+        let following = [String]()
+        let posts = [String]()
+        db.collection("user").document(user.UID).setData(["email":user.email! , "username":user.username!, "profileImageURL":user.profileImageURL! , "Following":following , "Followers":follower,"posts":posts])
+        
+    }
     
     
+    //MARK: - Image Picker
     @IBAction func IconSelectPressed(_ sender: Any)
     {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true , completion: nil)
-        
-        
-        
     }
     
     
@@ -158,6 +153,7 @@ class RegViewController: ViewController , UIImagePickerControllerDelegate , UINa
         infoValidation()
     }
     
+    //MARK: - Validation of entered information
    @objc func infoValidation()
     {
         guard
@@ -174,19 +170,6 @@ class RegViewController: ViewController , UIImagePickerControllerDelegate , UINa
         signUpBtn.isEnabled = true
         signUpBtn.titleLabel?.textColor = #colorLiteral(red: 0.6904727817, green: 0.3829051852, blue: 0.1476225555, alpha: 1)
     }
+   
     
-    
-    func uploadUser(with user: User)
-    {
-        do{
-        try db.collection("user").document(user.UID).setData(["email":user.email , "username":user.username , "profileImageURL":user.profileImageURL])
-        }
-        catch
-        {
-            print(error.localizedDescription)
-        }
-    }
-    
-    
-  
 }

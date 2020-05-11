@@ -16,6 +16,8 @@ protocol reviewCellDelegate {
 
 class ReviewCell: UITableViewCell {
 
+    
+    //MARK: - Property Setup
     @IBOutlet weak var iconImage: UIImageView!
     
     @IBOutlet weak var usernameLabel: UILabel!
@@ -38,6 +40,9 @@ class ReviewCell: UITableViewCell {
     
     @IBOutlet weak var finishLabel: UITextView!
     
+    
+    @IBOutlet weak var TimeLabel: UILabel!
+    
     var delegate : reviewCellDelegate?
     var notlikeImage  =  UIImage(systemName: "heart")
     var likeImage = UIImage(systemName: "heart.fill")
@@ -46,20 +51,36 @@ class ReviewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    
+    
+    //MARK: - Setup with a Review object 
     func setup(with post : Post , url : String)
     {
         iconImage.layer.cornerRadius = iconImage.frame.width / 2
         iconImage.contentMode = .scaleAspectFill
         iconImage.layer.masksToBounds = true
+        iconImage.layer.borderColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
+        iconImage.layer.borderWidth = 2
+        
+        if let time = post.time
+        {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yyyy"
+            
+            TimeLabel.text = formatter.string(from: Date.init(timeIntervalSince1970: time))
+        }
         self.iconImage.SetURLImage(with: url)
         self.usernameLabel.text = post.username
         self.whiskynameLabel.text = post.whiskyname
+        print(Auth.auth().currentUser!.uid)
         if (post.likeList?.contains(Auth.auth().currentUser!.uid))!
         {
+            
         LikeBtn.setImage(likeImage, for: .normal)
         }
         else
@@ -85,8 +106,9 @@ class ReviewCell: UITableViewCell {
     }
     
     
+    
+    //MARK: - Handle Like/Unlike
     @IBAction func LikeBtnPressed(_ sender: UIButton) {
-        print("clicked")
         if self.LikeBtn.imageView?.image == notlikeImage
         {
             self.delegate?.like_unlike(like: true , index: self.LikeBtn.tag)

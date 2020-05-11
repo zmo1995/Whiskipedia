@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-class LoginViewController: ViewController
+class LoginViewController: UIViewController , UITextFieldDelegate
 {
 
-    
+//MARK: - Property setup
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -22,6 +22,18 @@ class LoginViewController: ViewController
         navigationController?.navigationBar.isHidden = true
     }
     
+    
+//MARK: - retrive Keyboard when touch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+           self.view.endEditing(true)
+       }
+       
+       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           textField.resignFirstResponder()
+           return true
+       }
+    
+//MARK: - Handle sign in request
     
     @IBAction func SigninPressed(_ sender: UIButton)
     {
@@ -44,19 +56,7 @@ class LoginViewController: ViewController
                     self.performSegue(withIdentifier: "LoginToMain", sender: self)
                 }
             }
-            
-            
-            
-            
         }
-        
-        
-        
-        
-        
-        
-        
-        
     }
     
     

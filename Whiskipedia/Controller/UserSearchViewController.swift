@@ -7,84 +7,146 @@
 //
 
 import UIKit
+import Firebase
 
-class UserSearchViewController: UITableViewController {
+class UserSearchViewController: UITableViewController,UserinfoVCdelecate {
 
+    //MARK: - Property Setup
+    var UserList : [User] = []
+    let db = Firestore.firestore()
+    let identifier = "UserCell"
+    var my_following_list : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.register(UINib(nibName: identifier, bundle: nil), forCellReuseIdentifier: identifier)
+        navigationItem.title = "Users"
+        tableView.separatorStyle = .singleLine
+        LoadFollowingList()
+        LoadUser()
     }
-
+    
+    func reset()
+    {
+        print("Reset Called")
+        LoadFollowingList()
+        LoadUser()
+        self.tableView.reloadData()
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return UserList.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) as! UserCell
+        cell.setup(with: UserList[indexPath.row])
+        if my_following_list.contains(UserList[indexPath.row].UID)
+        {
+            cell.FollowingLabel.isHidden = false
+        }
+        else
+        {
+            cell.FollowingLabel.isHidden = true
+        }
+        return cell 
+        
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    // MARK: - TableView Layout
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = UserList[indexPath.row]
+        let userprofileVC = self.storyboard?.instantiateViewController(withIdentifier: "UserProfileView") as! UserInfoViewController
+        userprofileVC.delegate = self
+        userprofileVC.guestUser = user
+        userprofileVC.view.backgroundColor = #colorLiteral(red: 0.135846734, green: 0.08868866414, blue: 0.08197902888, alpha: 1)
+        navigationController?.pushViewController(userprofileVC, animated: true)
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+
+    
+}
+
+
+
+//MARK: - API Methods 
+extension UserSearchViewController
+{
+    func LoadUser()
+    {
+        let ref = db.collection("user")
+        ref.addSnapshotListener
+        { (querySnapshot, error) in
+            if let e = error
+            {
+                print(e.localizedDescription)
+            }
+            else
+            {
+                for doc in querySnapshot!.documents
+                {
+                    let userDic = doc.data() as Dictionary<String,AnyObject>
+                    let thisUser =  constructUser(uid: doc.documentID, dic: userDic)
+                    self.setUser(with: thisUser)
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func LoadFollowingList()
+    {
+        let myid = Auth.auth().currentUser?.uid
+        let ref = db.collection("user").document(myid!)
+        ref.getDocument { (snapshot, error) in
+            if let e = error
+            {
+                print(e.localizedDescription)
+            }
+            else
+            {
+                let myDoc = snapshot?.data()
+                self.my_following_list = myDoc!["Following"] as! [String]
+                self.tableView.reloadData()
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    func setUser( with user : User)
+    {
+        var contains = false
+        var index = 0
+        for eachUser in UserList
+        {
+            
+            if eachUser.UID == user.UID
+            {
+                contains = true
+                UserList[index] = user
+            }
+            index += 1
+        }
+        if !contains
+        {
+            UserList.append(user)
+        }
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -11,58 +11,59 @@ import Foundation
 
 
 
-class Whiskey : Decodable{
-    let Whisky:String?
-    let Meta_Critic: Double?
-    let STDEV:Double?
+class Whisky : Decodable{
+    let Whiskyname:String?
+    let Score: Double?
     let NumOfReviewsBasedOn:Int?
     let Cost:String?
-    let Class:String?
-    let Super_Cluster:String?
-    let Cluster: String?
     let Country: String?
     let type:String?
-}
-
-
-//
-//func readJSONFromFile(fileName: String) //-> [Whiskey]?
-//{
-//
-////    var eachWhiskey: Whiskey?
-//
-//    if let path = Bundle.main.path(forResource: "WhiskeyDatabase", ofType: "json") {
-//        do {
-//            let fileUrl = URL(fileURLWithPath: path)
-//            // Getting data from JSON file using the file URL
-//            let data = try? Data(contentsOf: fileUrl, options: .mappedIfSafe)
-//            let json = try JSONSerialization.jsonObject(with: data! , options: .mutableContainers)
-//            print(json)
-//
-//
-//        } catch {
-//            // Handle error here
-//
-//        }
-//    }
-//
-//    //return results
-//
-//
-//
-//
-//}
-//
-
-func read ()
-{
-    if let path = Bundle.main.path(forResource: "WhiskeyDatabase", ofType: "json") {
-        do {
-              let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-              let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-               print(jsonResult!)
-          } catch {
-               // handle error
-          }
+    let posts:[String]?
+    var ID : String?
+    
+    
+    init(dic:Dictionary<String,AnyObject>) {
+        if let posts = dic["posts"] as? [String]
+        {
+            self.posts = posts
+        }
+        else
+        {self.posts = [String]()}
+        if let Whiskyname = dic["Name"] as? String
+        {
+            self.Whiskyname = Whiskyname
+        }
+        else {self.Whiskyname = "N/A"}
+        if let Score = dic["Score"] as? Double
+        {
+            self.Score = Score
+        }
+        else {self.Score = 0.0}
+        
+        if let numOfReviewBasedOn = dic["NumOfReviewsBasedOn"] as? Int
+        {
+            self.NumOfReviewsBasedOn = numOfReviewBasedOn
+        }
+        else {self.NumOfReviewsBasedOn = 0}
+        if let cost = dic["Cost"] as? String
+        {
+            self.Cost = cost
+        }
+        else{self.Cost = "$"}
+        if let country = dic["Country"] as? String
+        {
+            self.Country = country
+        }
+        else {self.Country = "N/A"}
+        if let whiskyType = dic["Type"] as? String
+        {
+            self.type = whiskyType
+        }
+        else {self.type  = "N/A"}
+        
+        
+        
+        
     }
 }
+

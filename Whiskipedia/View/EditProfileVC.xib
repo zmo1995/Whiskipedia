@@ -26,7 +26,7 @@
                         <constraint firstAttribute="height" constant="150" id="X0b-J9-o5X"/>
                     </constraints>
                     <color key="tintColor" red="0.69047278170000004" green="0.3829051852" blue="0.1476225555" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" image="logo" backgroundImage="person.circle.fill" catalog="system"/>
+                    <state key="normal" backgroundImage="person.circle.fill" catalog="system"/>
                     <connections>
                         <action selector="ImageBtnPressed:" destination="-1" eventType="touchUpInside" id="7kq-o3-MhR"/>
                     </connections>
@@ -68,7 +68,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo" width="300" height="300"/>
         <image name="person.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>
