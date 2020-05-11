@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditProfileVC" customModule="Whiskipedia" customModuleProvider="target">
+            <connections>
+                <outlet property="ProfileImageBtn" destination="LJW-Ik-bQi" id="lwl-IO-tnN"/>
+                <outlet property="usernameField" destination="sJp-Av-u2O" id="vCM-XM-72Z"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJW-Ik-bQi">
+                    <rect key="frame" x="132" y="124.5" width="150" height="149"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="17D-jL-iN6"/>
+                        <constraint firstAttribute="height" constant="150" id="X0b-J9-o5X"/>
+                    </constraints>
+                    <color key="tintColor" red="0.69047278170000004" green="0.3829051852" blue="0.1476225555" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="logo" backgroundImage="person.circle.fill" catalog="system"/>
+                    <connections>
+                        <action selector="ImageBtnPressed:" destination="-1" eventType="touchUpInside" id="7kq-o3-MhR"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username : " minimumFontSize="14" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="sJp-Av-u2O">
+                    <rect key="frame" x="25" y="354" width="364" height="45.5"/>
+                    <color key="backgroundColor" red="0.69047278170000004" green="0.3829051852" blue="0.1476225555" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="364" id="0tW-Hf-xgN"/>
+                        <constraint firstAttribute="height" constant="45.5" id="52L-0T-Wy9"/>
+                    </constraints>
+                    <color key="textColor" red="0.7725490196" green="0.72941176470000002" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIh-Jp-oN8">
+                    <rect key="frame" x="168.5" y="509.5" width="77" height="48"/>
+                    <color key="backgroundColor" red="0.135846734" green="0.088688664139999998" blue="0.081979028879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <state key="normal" title="Finish">
+                        <color key="titleColor" red="0.69047278170000004" green="0.3829051852" blue="0.1476225555" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="FinishBtnPressed:" destination="-1" eventType="touchUpInside" id="nrb-35-CvV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.135846734" green="0.088688664139999998" blue="0.081979028879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LJW-Ik-bQi" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7sK-Z0-z4y"/>
+                <constraint firstItem="MIh-Jp-oN8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Afr-Te-IZj"/>
+                <constraint firstItem="MIh-Jp-oN8" firstAttribute="top" secondItem="sJp-Av-u2O" secondAttribute="bottom" constant="110" id="PCX-vV-EM3"/>
+                <constraint firstItem="sJp-Av-u2O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SYo-ba-e00"/>
+                <constraint firstItem="LJW-Ik-bQi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="80" id="bdr-mx-ghq"/>
+                <constraint firstItem="sJp-Av-u2O" firstAttribute="top" secondItem="LJW-Ik-bQi" secondAttribute="bottom" constant="80" id="ySC-lP-LEI"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="139" y="100"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="logo" width="300" height="300"/>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+    </resources>
+</document>
