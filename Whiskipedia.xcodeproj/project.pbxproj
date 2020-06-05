@@ -39,6 +39,7 @@
 		3E65D0E92441495E0018DB1C /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0E72441495E0018DB1C /* UserCell.swift */; };
 		3E65D0EA2441495E0018DB1C /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E65D0E82441495E0018DB1C /* UserCell.xib */; };
 		3E65D0EC24414D5E0018DB1C /* UserSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65D0EB24414D5E0018DB1C /* UserSearchViewController.swift */; };
+		3E7ADB61248AE9B600902327 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7ADB60248AE9B600902327 /* LoadingIndicator.swift */; };
 		3EEB88CC245677D4003BAAAD /* dbForPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEB88CB245677D4003BAAAD /* dbForPostVC.swift */; };
 		3EEB88CE24576888003BAAAD /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEB88CD24576888003BAAAD /* PostCell.swift */; };
 		3EEB88D024579D01003BAAAD /* PostDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEB88CF24579D01003BAAAD /* PostDetailVC.swift */; };
@@ -81,6 +82,7 @@
 		3E65D0E72441495E0018DB1C /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		3E65D0E82441495E0018DB1C /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		3E65D0EB24414D5E0018DB1C /* UserSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchViewController.swift; sourceTree = "<group>"; };
+		3E7ADB60248AE9B600902327 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		3EEB88CB245677D4003BAAAD /* dbForPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dbForPostVC.swift; sourceTree = "<group>"; };
 		3EEB88CD24576888003BAAAD /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		3EEB88CF24579D01003BAAAD /* PostDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailVC.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				3E65D0EB24414D5E0018DB1C /* UserSearchViewController.swift */,
 				3E43D90E24523F6D0087B3FC /* EditProfileVC.swift */,
 				3EEB88CD24576888003BAAAD /* PostCell.swift */,
+				3E7ADB60248AE9B600902327 /* LoadingIndicator.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				3E43D91E2454D3740087B3FC /* TextVC.swift in Sources */,
 				3E4E09E22433E431002E3E16 /* LoginViewController.swift in Sources */,
 				3E4E09E0242FEC00002E3E16 /* RegViewController.swift in Sources */,
+				3E7ADB61248AE9B600902327 /* LoadingIndicator.swift in Sources */,
 				3EEB88D024579D01003BAAAD /* PostDetailVC.swift in Sources */,
 				3E65D0CB243D05140018DB1C /* UserStruct.swift in Sources */,
 				3E65D0E2243E73F20018DB1C /* WhiskeyClass.swift in Sources */,
@@ -516,6 +520,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92Y5PSS6JP;
 				INFOPLIST_FILE = Whiskipedia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -535,6 +540,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92Y5PSS6JP;
 				INFOPLIST_FILE = Whiskipedia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

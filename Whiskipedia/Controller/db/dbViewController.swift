@@ -22,6 +22,9 @@ class dbViewController: UITableViewController {
     var Filtered_whiskyList = [Whisky]()
     var searching = false
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Explore"
@@ -30,7 +33,6 @@ class dbViewController: UITableViewController {
         tableView.register(UINib(nibName: identifier, bundle: nil), forCellReuseIdentifier: identifier)
         loadwhisky()
         tableView.reloadData()
-        
         
     }
 
@@ -77,6 +79,8 @@ extension dbViewController
 {
     func loadwhisky()
     {
+        LoadingIndicator.start(style: .large, color: .white);
+
         let ref = db.collection("Whisky").order(by: "Score",descending: true)
         
         ref.getDocuments { (querysnapshot, error) in
@@ -93,10 +97,8 @@ extension dbViewController
                     self.whiskyList.append(whisky)
                     self.tableView.reloadData()
                 }
-                
-                
-                
             }
+            LoadingIndicator.stop()
         }
     }
     
@@ -153,7 +155,6 @@ extension dbViewController : addWhiskyVCdelegate
             if let Navigation = self.tabBarController?.viewControllers![2] as? UINavigationController
             {
                 let postDB = Navigation.viewControllers[0] as! dbForPostVC
-                //print(postDB.navigationItem.title! + "**************************")
                 addWhiskyVC.post_delegate = postDB
 
             }

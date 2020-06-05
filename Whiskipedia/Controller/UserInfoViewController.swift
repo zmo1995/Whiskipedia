@@ -162,7 +162,7 @@ class UserInfoViewController: UICollectionViewController , UICollectionViewDeleg
     func loadUser(uid: String)
     {
         //guard let userID = Auth.auth().currentUser?.uid else { return }
-        
+
         let userFile = db.collection("user").document(uid)
             userFile.getDocument { (querysnapshot, error) in
                 if error != nil
@@ -185,6 +185,8 @@ class UserInfoViewController: UICollectionViewController , UICollectionViewDeleg
     
     func loadPost()
     {
+        LoadingIndicator.start(style: .large, color: .white);
+
         self.postlIst = [Post]()
         print("loading post")
         print(postIDs?.count)
@@ -203,6 +205,7 @@ class UserInfoViewController: UICollectionViewController , UICollectionViewDeleg
                     loaded_post.postID = snapshot?.documentID
                     self.postlIst.append(loaded_post)
                     self.collectionView.reloadData()
+                    LoadingIndicator.stop();
                 }
             }
         }
@@ -216,6 +219,8 @@ class UserInfoViewController: UICollectionViewController , UICollectionViewDeleg
         let myid = Auth.auth().currentUser?.uid
         let myRef = db.collection("user").document(myid!)
         let targetRef = db.collection("user").document(uid)
+        LoadingIndicator.start(style: .large, color: .white);
+
         db.runTransaction({ (transaction, errorPointer) -> Any? in
             
             let myDoc : DocumentSnapshot
@@ -287,6 +292,7 @@ class UserInfoViewController: UICollectionViewController , UICollectionViewDeleg
             else
             {
                 self.loadUser(uid: self.guestUser!.UID)
+                LoadingIndicator.stop();
                 print("Transaction Successful")
             }
             

@@ -88,9 +88,9 @@ class HomeViewController: UITableViewController,reviewCellDelegate{
     
     func loadFollowingList()
     {
-        print("inside loading ")
         let myref = db.collection("user").document(Auth.auth().currentUser!.uid)
         let usersRef = db.collection("user")
+        LoadingIndicator.start(style: .large, color: .white);
         myref.getDocument { (snapshot, error) in
             if let e = error
             {
@@ -112,14 +112,11 @@ class HomeViewController: UITableViewController,reviewCellDelegate{
                         { print(e.localizedDescription) }
                         else
                         {
-                            print("User : \(Usersnapshot!.documentID)")
                             let dic = Usersnapshot!.data()! as Dictionary<String,AnyObject>
                             let postIDs = dic["posts"] as! [String]
                             posts.append(contentsOf: postIDs)
                             self.postsNum = posts.count
-                            print("Need to Load \(self.postsNum) Posts in Total")
                             self.followingUsers[Usersnapshot!.documentID] = (dic["profileImageURL"] as! String)
-                            print(followingList.count)
                             if ids == followingList[0]
                             {
                                 print("PostIDs Loading Finish")
@@ -152,20 +149,20 @@ class HomeViewController: UITableViewController,reviewCellDelegate{
                     let reviewData = doc.data() as Dictionary<String,AnyObject>
                     let postToAdd = Post(dic: reviewData)
                     postToAdd.postID = doc.documentID
-                    if let likeList = reviewData["likeList"] as? [String]
-                    {
-                        print("Likelist has \(likeList.count) users")
-                        for user in likeList
-                        {
-                            print("Like User is : " + user)
-                        }
-                    }
+//                    if let likeList = reviewData["likeList"] as? [String]
+//                    {
+//                        print("Likelist has \(likeList.count) users")
+//                        for user in likeList
+//                        {
+//                            print("Like User is : " + user)
+//                        }
+//                    }
                     self.postsToShow.append(postToAdd)
                     self.index = doc
                 }
                 self.tableView.reloadData()
                 self.tableView.refreshControl?.endRefreshing()
-                
+                LoadingIndicator.stop();
                 
                 
             }
@@ -174,39 +171,10 @@ class HomeViewController: UITableViewController,reviewCellDelegate{
         
     }
     
-    
-//    func loadPost(postlist : [String])
-//    {
-//        for everypost in postlist
-//        {
-//            print(everypost)
-//            self.db.collection("reviews").document(everypost).getDocument { (snapshot, error) in
-//                if let e =  error
-//                {
-//                    print(e.localizedDescription)
-//                }
-//                else
-//                {
-//                    let dic = snapshot!.data()! as Dictionary<String,AnyObject>
-//                    let postToAdd = Post(dic: dic)
-//                    postToAdd.postID = snapshot?.documentID
-//                    if let likeList = dic["likeList"] as? [String]
-//                    {
-//                        print("Likelist has \(likeList.count) users")
-//                        for user in likeList
-//                        {
-//                            print("Like User is : " + user)
-//                        }
-//                    }
-//                    self.postsToShow.append(postToAdd)
-//                    self.tableView.reloadData()
-//                    self.tableView.refreshControl?.endRefreshing()
-//                }
-//            }
-//        }
-//    }
+
     
     @objc func like_unlike(like: Bool, index: Int) {
+        LoadingIndicator.start(style: .large, color: .white);
         print("Like/Unlike index is \(index)")
         print("action is \(like ? "Like":"Unlike")")
         let myuid = Auth.auth().currentUser!.uid;
@@ -262,6 +230,7 @@ class HomeViewController: UITableViewController,reviewCellDelegate{
             else
             {
                 print("Transaction Successful")
+                LoadingIndicator.stop();
                 self.tableView.reloadData()
             }
         }
@@ -273,8 +242,7 @@ class HomeViewController: UITableViewController,reviewCellDelegate{
        {
            do {
            try Auth.auth().signOut()
-               //self.navigationController?.popToRootViewController(animated: true)
-               self.tabBarController?.navigationController?.popToRootViewController(animated: true)
+        self.tabBarController?.navigationController?.popToRootViewController(animated: true)
            }
            catch
            {
